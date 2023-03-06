@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="about">
+    <h1>About</h1>
+    <p>This app can be used to convert a <a href="https://www.degiro.nl"><b>DEGIRO</b></a> transactions CSV file to CSV format suitable for importing into a <a href="https://simplywall.st/"><b>Simply WallSt</b></a> portfolio.</p>
+    <h4>Why an app for an easy thing as a CSV transformation?</h4>
+    <p>The DEGIRO transactions CSV file contains all transactions over a period of time but differs strongly from the CSV file format that Simply WallSt. uses. Since converting formats requires some lookups and transformations, I found it more useful to create an app to do this in a reproducible way.</p>
+    <p>More in detail, the DEGIRO file contains 19 columns with data where the Simply WallSt. CSV file expects 5 columns.
+      Out of these 5 columns all matching columns from the source CSV file require some sort or transformation before the data is usable for import in
+      Simply WallSt., varying from:
+      <ul>
+        <li>Converting the date format</li>
+        <li>Lookup ISIN numbers to Ticker symbols</li>
+        <li>Filtering based on currency</li>
+        <li>Inverting negative stock prices</li>
+        <li>Adding a Buy/Sell action field</li>
+      </ul>
+    </p>
+    <h4>How do I use it?</h4>
+    <p>See <a href="/">usage</a> on the landing page.</p>
+    <p>
+      <ul>
+        <li>DEGIRO provides information on <a href="https://www.degiro.nl/helpdesk/belasting/welke-rapportagemogelijkheden-zijn-er-en-waar-kan-ik-de-rapportages-vinden">exporting transactions to a CSV file</a>.</li>
+        <li>Simply WallSt provides information on <a href="https://support.simplywall.st/hc/en-us/articles/360001842916-How-to-Upload-CSV-File-for-Transactions-Portfolio">importing CSV-files in a Portfolio</a>.</li>
+      </ul>
+    </p>
+    <h4>Things don't work for me</h4>
+    <p>Drop me an <a href="mailto:cement_salie.0i@icloud.com">email</a>.</p>
+    <h4>Data privacy</h4>
+    <p>This app does not collect or store any personal data. No transaction data is collected or stored, in any form.
+      The only information stored is a usage count of this app, using request containing the client IP-address and corresponding date/timestamps.</p>
+    <p>If you don't want to use this service, but instead run your own instance of this service, or just see the source code: This app is open source and can be found on <a href="https://github.com/mpepping/simply-transactions-csv">GitHub</a>.</p>
+    <h4>Disclaimer</h4>
+    <p>This app is provided as is. No guarantees are made that the output is correct. Use at your own risk.</p>
+  </div>
+{% endblock %}

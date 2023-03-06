@@ -1,0 +1,17 @@
+# IDE
+*swp
+.idea
+*.iml
+.vscode
+
+# Project
+*.pyc
+__pycache__
+config.json
+venv
+.venv
+
+# tmp
+Transactions.csv
+*.csv
+notes.txt

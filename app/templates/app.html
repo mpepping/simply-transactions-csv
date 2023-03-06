@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="upload_file">
+    <h1>Convert transactions CSV files</h1>
+    <p>This app can be used to convert a <b>DEGIRO</b> transactions CSV file to a CSV format suitable for importing into a <b>Simply WallSt</b> transactions portfolio.</p>
+    <h4>Usage</h4>
+    <p>
+      <ol>
+        <li><i>Select the source broker platform. At this point only DEGIRO is available.</i></li>
+        <li><i>Since Simply WallSt portfolios are created based on a certain currency, here you can select the currency to filter transactions on.</i></li>
+        <li><i>Select the transactions CSV file exported from DEGIRO for conversion.</i></li>
+        <li><i>Clicking convert will prompt with a CSV-file to download. This file can be used in Simply WallSt to create or update a portfolio.</i></li>
+      </ol>
+    </p>
+    <h1>Convert a new File</h1>
+    <form method=post enctype=multipart/form-data>
+      <p>1. Broker platform:
+      <select id="broker" name="broker">
+        <option value="degiro">DEGIRO</option>
+      </select>
+      </p>
+      <p>2. Currency:
+      <select id="currency" name="currency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+      </select>
+      </p>
+      <p>3. Transaction CSV file:
+      <input type=file name=file>
+      </p>
+      <p>4.
+      <input type=submit value=Convert>
+      </p>
+    </form>
+    <h1>About</h1>
+    <p>For more information, or help, see the <a href="/about">about</a> section.</p>
+  </div>
+{% endblock %}
