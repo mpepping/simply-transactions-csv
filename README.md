@@ -1,6 +1,6 @@
 # simply-transactions-csv
 
-This app can be used to convert a [DEGIRO](https://www.degiro.nl) transactions CSV file to CSV format suitable for importing into a [Simply WallSt](https://simplywall.st/) portfolio.
+A small webapp that can be used to convert a [DEGIRO](https://www.degiro.nl) transactions CSV file to CSV format suitable for importing into a [Simply WallSt](https://simplywall.st/) portfolio.
 
 ## Running the app
 
