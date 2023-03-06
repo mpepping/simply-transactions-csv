@@ -24,6 +24,5 @@ Set `OPENFIGI_API_KEY` environment variable to your API key. Register for a free
 
 ## Target CSV format
 
-An example of the target CSV format can be found at:
-<https://legacy.simplywall.st/documents/Simply%20Wall%20St%20-%20Example%20Import%20transactions.csv>
+An example of the target CSV format can be found [here]()https://legacy.simplywall.st/documents/Simply%20Wall%20St%20-%20Example%20Import%20transactions.csv).
 
