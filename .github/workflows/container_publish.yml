@@ -21,7 +21,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    needs: [pylint]
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
