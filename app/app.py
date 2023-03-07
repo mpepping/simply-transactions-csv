@@ -35,17 +35,20 @@ def upload_file():
             form_broker = request.form["broker"]
             return redirect(url_for('process_file', name=random_filename, currency=form_currency, broker=form_broker))
         else:
-            return '''
-            <!doctype html>
-            <title>Upload new File</title>
-            <h1>Only CSV files can be uploaded</h1>
-            <a href="/">Back</a>
-            '''
+            return render_template('error.html', error="Only CSV files are can be processed")
     return render_template('app.html')
 
 
 @app.route('/process/<name>')
 def process_file(name):
+
+    # validate csv file
+    try:
+        test_file = os.path.join(app.config['UPLOAD_FOLDER'], name)
+        helpers.test_csv_schema(test_file)
+    except:
+        return render_template('error.html', error="Invalid CSV file. Check the file format and try again")
+
     out_name = "simply_wallst_" + name
     currency = request.args.get('currency')
     helpers.etl_degiro(name, currency)
@@ -62,10 +65,11 @@ def delete_file(name):
     os.remove(os.path.join(app.config['UPLOAD_FOLDER'], name))
     return redirect(url_for('upload_file'))
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=False)
+    app.run(host="0.0.0.0", port=8080, debug=True)

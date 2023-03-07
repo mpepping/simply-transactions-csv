@@ -1,11 +1,13 @@
 # https://www.openfigi.com/api
 
+import asyncio
 import json
 import os
 import pandas as pd
 import random
 import requests
 import string
+import time
 
 ## CONSTANTS
 API_URL = 'https://api.openfigi.com/v1/mapping'
@@ -72,7 +74,10 @@ def etl_degiro(csv_file_imp, currency):
     out_file_path = os.path.join(UPLOAD_FOLDER, "simply_wallst_" + csv_file_imp)
     out_csv = open(out_file_path, 'w')
 
+    # Read CSV file for processing
     df = pd.read_csv(imp_file_path, skipinitialspace=True, usecols=fields, parse_dates=['Datum'], dayfirst=True)
+
+    # Rename columns to the destination format
     df.rename(columns = {   "Datum": "Date",
                             "Aantal": "Shares",
                             "Koers": "Price",
@@ -96,7 +101,7 @@ def etl_degiro(csv_file_imp, currency):
 
     # Use columns matching currency
     a = df[df['Valuta'].str.match(currency)]
-    print(a.to_csv(index=False, columns=fields_out))
+    # print(a.to_csv(index=False, columns=fields_out))
     out_csv.writelines(a.to_csv(index=False, columns=fields_out))
 
 
@@ -111,3 +116,21 @@ def random_string(filename):
     letters = string.ascii_lowercase
     concat_filename = filename.replace(' ', '_').lower()
     return ''.join(random.choice(letters) for i in range(6)) + '_' + concat_filename
+
+
+def test_csv_schema(csv_file):
+    """Test CSV schema"""
+    test_file = pd.read_csv(csv_file)
+    if test_file.columns[0] == 'Datum':
+        pass
+    else:
+        sys.exit(1)
+
+
+async def delete_file(filename):
+    """Delete file"""
+    time.sleep(120)
+    processed_filename = 'simply_wallst_' + filename
+    for file in [filename, processed_filename]:
+        if os.path.exists(os.path.join(UPLOAD_FOLDER, file)):
+            os.remove(os.path.join(UPLOAD_FOLDER, file))
